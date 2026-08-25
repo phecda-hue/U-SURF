@@ -1,0 +1,13 @@
+numpy
+opencv-python
+pillow
+scikit-image
+scipy
+matplotlib
+scikit-learn
+networkx
+sknw
+tifffile
+albumentations
+torch
+torchvision
