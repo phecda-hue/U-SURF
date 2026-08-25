@@ -6,5 +6,6 @@
 /models
 /analyze_vessel/analysis_results
 /denoising/pig_bile_duct/roi_gui_outputs
-/predict_vesslel_mask/prediction_result
+/predict_vessel_mask/prediction_result
 /test
+__pycache__/

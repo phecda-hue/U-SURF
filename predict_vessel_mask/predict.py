@@ -8,7 +8,14 @@ import cv2
 from PIL import Image
 from skimage.filters import frangi
 
-from trainunet import UNet
+import sys
+import os
+
+parent_dir = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+
+sys.path.append(parent_dir)
+
+from .train_models.unet_2ch_input.trainunet import UNet
 
 
 ROOT = Path(__file__).resolve().parent

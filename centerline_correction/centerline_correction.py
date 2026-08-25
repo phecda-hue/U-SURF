@@ -7,6 +7,12 @@ import numpy as np
 from scipy.interpolate import UnivariateSpline
 from skimage.filters import frangi
 from scipy.ndimage import gaussian_filter1d
+import sys
+
+SCRIPT_DIR = Path(__file__).resolve().parent
+REPO_ROOT = SCRIPT_DIR.parent
+
+sys.path.insert(0, str(REPO_ROOT))
 
 from predict_vessel_mask.predict import (
     DEFAULT_MODEL as PREDICT_DEFAULT_MODEL,
@@ -36,15 +42,21 @@ DISAGREEMENT_SCALE = 25.0
 SPREAD_BASELINE_SIGMA = 10.0
 SPREAD_ERROR_SCALE = 60.0
 
-CENTERLINE_SOURCE = "unet"  # "original", "unet", or "combined"
+CENTERLINE_SOURCE = "original"
 ORIGINAL_CENTERLINE_WEIGHT = 0.2
 UNET_CENTERLINE_WEIGHT = 0.8
 
 FILTER_THRESHOLD = 0.05  # Threshold for removing low-probability pixels before centerline extraction.
 
-PREDICTION_IMAGE_PATH = "probability_map.npy"
-UNET_INPUT_IMAGE_PATH = "gray_Figure.png"
-RECONSTRUCTION_IMAGE_PATH = "Figure_1.png"
+PREDICTION_IMAGE_PATH = (
+    REPO_ROOT
+    / "predict_vessel_mask"
+    / "prediction_result"
+    / "multicontrast"
+    / "gray_mouse_ear_flattened_multicontrast_probability.npy"
+)
+UNET_INPUT_IMAGE_PATH = REPO_ROOT / "raw" / "gray_mouse_ear.png"
+RECONSTRUCTION_IMAGE_PATH = REPO_ROOT / "raw" / "mouse_ear.png"
 
 APPLY_INPUT_DISTORTION = False
 # (x_fraction, y_shift_pixels). Positive shift moves content downward.
@@ -76,13 +88,14 @@ APPLY_FRANGI_POSTPROCESS = True
 POST_FRANGI_WEIGHT = 0.2
 POST_FRANGI_SIGMAS = (1, 2, 3, 4)
 
-ROOT = Path(__file__).resolve().parent
-UNET_MODEL = ROOT.parent / "models" / "unet_2ch_input.pt"
+UNET_MODEL = REPO_ROOT / "models" / "unet_2ch_input.pt"
 if not UNET_MODEL.is_file():
     UNET_MODEL = Path(PREDICT_DEFAULT_MODEL)
 
 DEVICE = "auto"  # "auto", "cpu", or e.g. "cuda:0"
-PREDICTION_OUTPUT_DIR = "predictions/original_unet_same_centerline_method"
+PREDICTION_OUTPUT_DIR = (
+    REPO_ROOT / "centerline_correction" / "centerline_corrected_result"
+)
 
 
 # ============================================================

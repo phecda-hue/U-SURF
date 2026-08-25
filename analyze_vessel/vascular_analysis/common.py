@@ -28,9 +28,11 @@ except ImportError:
     sknw = None
 
 
-INPUT_PATH = Path(
-    "predictions/original_unet_same_centerline_method/"
-    "probability_map_unet_source_processed.npy"
+INPUT_PATH = (
+    Path(__file__).resolve().parents[2]
+    / "centerline_correction"
+    / "centerline_corrected_result"
+    / "gray_mouse_ear_flattened_multicontrast_probability_unet_source_processed.npy"
 )
 
 
