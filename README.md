@@ -49,4 +49,4 @@ Since the noise in the pig bile duct images varies in curvature and intensity, t
 ## 5. Analyze Vessel
 Using the generated blood vessel mask, the blood vessels are skeletonized to calculate parameters such as diameter, length, curvature, and cycle structure.
 Calculations involving the skeleton are performed using sknw, with the skeleton represented as a graph for the computation.
-When entering data, the exact width, height, and units (cm, mm, µm) for the scan range should be specified.
+When analyze data, the exact width, height, and units (cm, mm, µm) for the scan range should be specified.
